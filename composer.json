@@ -1,0 +1,42 @@
+{
+    "name": "brunofalcaodev/nidavellir-pipelines",
+    "description": "Nidavellir pipelines",
+    "keywords": [
+        "brunocfalcao"
+    ],
+    "homepage": "https://github.com/brunofalcaodev/nidavellir-pipelines",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Bruno Falcão",
+            "email": "bruno.c.falcao@brunofalcao.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/support": "^8.0",
+        "brunofalcaodev/nidavellir-trading": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nidavellir\\Pipelines\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nidavellir\\Pipelines\\NidavellirPipelinesServiceProvider"
+            ]
+        }
+    }
+}

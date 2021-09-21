@@ -1,6 +1,6 @@
 <?php
 
-namespace Nidavellir\Pipelines\Pipelines\ProcessAlert;
+namespace Nidavellir\Pipelines\ProcessAlert;
 
 use Closure;
 

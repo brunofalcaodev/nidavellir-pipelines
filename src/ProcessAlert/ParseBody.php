@@ -1,6 +1,6 @@
 <?php
 
-namespace Nidavellir\Pipelines\Pipelines\ProcessAlert;
+namespace Nidavellir\Pipelines\ProcessAlert;
 
 use Closure;
 use Nidavellir\Exceptions\AlertException;
@@ -11,13 +11,11 @@ use Nidavellir\Exceptions\AlertException;
  * Needs:
  * (mandatory) $data->body: The request body from the alert post
  * request (string)
- * (mandatory) $data->headers: The request headers from the alert post
- * request (array)
  *
  * Adds:
  * (mandatory) $data->instructions: Alert passed instructions (collection)
  */
-class ParseAlertBody
+class ParseBody
 {
     public function __construct()
     {
@@ -28,10 +26,6 @@ class ParseAlertBody
     {
         if (empty($data->body)) {
             throw new AlertException('Empty instructions, please check alert content!', $data->headers);
-        }
-
-        if (count($data->headers) == 0) {
-            throw new AlertException('Empty request headers, possible security issue!', $data->headers, $data->body);
         }
 
         // Parse instructions into an associate laravel collection.

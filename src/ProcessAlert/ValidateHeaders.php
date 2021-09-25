@@ -25,7 +25,7 @@ class ValidateHeaders
     public function handle($data, Closure $next)
     {
         if (count($data->headers) == 0 && app()->environment() == 'production') {
-            throw new AlertException('Empty request headers, possible security issue!', $data->headers, $data->body);
+            throw new AlertException('Empty request headers, possible security issue!', ['headers' => $data->headers, 'body' => $data->body]);
         }
 
         return $next($data);

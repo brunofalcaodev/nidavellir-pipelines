@@ -13,9 +13,9 @@ use Nidavellir\Exceptions\AlertException;
  * request (string)
  *
  * Adds:
- * (mandatory) $data->instructions: Alert passed instructions (collection)
+ * (mandatory) $data->instructions: Alert passed instructions (array)
  */
-class ParseBody
+class BodyToInstructions
 {
     public function __construct()
     {
@@ -24,19 +24,15 @@ class ParseBody
 
     public function handle($data, Closure $next)
     {
-        if (empty($data->body)) {
-            throw new AlertException('Empty instructions, please check alert content!', $data->headers);
-        }
-
         // Parse instructions into an associate laravel collection.
         $instructions = collect(preg_split("/\r\n|\n|\r/", $data->body))->map(function ($item, $key) {
             $values = explode(':', trim(str_replace('  ', ' ', $item)));
 
             return [strtolower($values[0]) => strtolower($values[1])];
-        })->collapse();
+        })->collapse()->toArray();
 
-        if ($instructions->count() != 5) {
-            throw new AlertException('Incorrect number of instructions!', $data->headers, $data->body);
+        if (count($instructions) != 5) {
+            throw new AlertException('Incorrect number of instructions!', ['headers' => $data->headers, 'body' => $data->body]);
         }
 
         data_set(

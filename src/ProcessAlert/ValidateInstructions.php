@@ -4,6 +4,7 @@ namespace Nidavellir\Pipelines\ProcessAlert;
 
 use Closure;
 use Nidavellir\Cube\Models\Api;
+use Nidavellir\Exceptions\ErrorException;
 use Nidavellir\Pipelines\Instruction;
 use Nidavellir\Trading\Logicators\InstructionsLogicator;
 
@@ -35,8 +36,9 @@ class ValidateInstructions
          * token: {{ticker}}
          * panic: true, false.
          */
-        dd($data->instructions);
         InstructionsLogicator::validate($data->instructions);
+
+        dd('okay');
 
         return $next($data);
     }

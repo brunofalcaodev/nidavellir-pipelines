@@ -4,7 +4,6 @@ namespace Nidavellir\Pipelines\ProcessAlert;
 
 use Closure;
 use Nidavellir\Cube\Models\Api;
-use Nidavellir\Exceptions\ErrorException;
 use Nidavellir\Pipelines\Instruction;
 use Nidavellir\Trading\Logicators\InstructionsLogicator;
 
